@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>我是一级标题</h1>
+        <h1>循环语句遍历标题</h1>
+        <h2 v-for="item in 3">我是二级标题 + {{item}}</h2>
+        <h1>循环语句遍历数组</h1> 
+        <ul>
+            <li v-for="(item,index) in arr"> {{item}} + "---- " + {{index}}</li>
+        </ul>  
+        <h1>九九乘法口诀</h1>
+        <table>
+            <tr v-for="row in 9">
+                <td v-for="col in 9" v-show="row>=col">{{row * col}} </td>
+            </tr>
+        </table>   
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            arr: ['元素1','元素2','元素3']
+        }
+    });
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>
+            我是vue，我今年{{age}}岁了
+        </h1>
+    </div>
+</body>
+</html>
+<script>
+    // 当程序引入vue框架的时候，vue对外暴露了一个Vue构造函数
+    // console.log(Vue);
+    // 通过这个vue构造函数，创建实例
+    var vm = new Vue({
+        // el:element的简写，挂载点设置，将vue实例和结构层中的标签进行挂载
+        // 通过el把vue和html建立联系
+        el: "#app",
+        // 实例数据的来源
+        data: {
+            age: 100
+        }
+    });
+   // console.log(vm);
+    vm.age = 20;
+</script>

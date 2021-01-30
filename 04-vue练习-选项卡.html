@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="add('军事')">军事</button>
+        <button @click="add('视频')">新闻</button>
+        <button @click="add('直播')">直播</button>
+        <ul v-show="info == '军事'">
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+        </ul>
+        <ul v-show="info == '视频'">
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+        </ul>
+        <ul v-show="info == '直播'">
+            <li>视频视频</li>
+            <li>视频视频</li>
+            <li>视频视频</li>
+            <li>视频视频</li>
+            <li>视频视频</li>
+            <li>视频视频</li>
+            <li>视频视频</li>
+            <li>视频视频</li>
+            <li>视频视频</li>
+            <li>视频视频</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            info: "军事"
+        },
+        methods: {
+            add(para) {
+                console.log(para);
+                //vm.info = para;
+                // 可以用this代替vm
+                vm.info = para;
+            }
+        }
+    });
+</script>

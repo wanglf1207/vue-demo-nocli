@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>我是一个计时器:  {{count}}</h1>
+        <button v-on:click="add()">点我+1</button>
+        <button @click="minus()">点我-1</button>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            count:1
+        },
+        methods: {
+            add() {
+                this.count++;
+                //设置上限
+                this.count=this.count>10?10:this.count;
+            },
+            minus() {
+                this.count--;
+                this.count=this.count<-3?-3:this.count;
+            }
+        }
+    });
+
+</script>
