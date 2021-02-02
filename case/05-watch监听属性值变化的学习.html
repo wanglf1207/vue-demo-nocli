@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        <p>{{msg}}</p>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: ""
+        },
+        // 监听势力属性值变化情况
+        watch: {
+            // watch 可以监听实例属性值的变化
+            // watch这里书写函数名字务必和监听属性名字要统一
+            msg() {
+                console.log("你发生变化了");
+            }
+        }
+    })
+</script>

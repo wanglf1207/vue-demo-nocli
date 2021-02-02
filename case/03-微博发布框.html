@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+
+    <style>
+        *{
+            margin: 10;
+            padding: 0;
+        }
+       
+    </style>
+</head>
+<body>
+    <!--模板-->
+    <div id="app" class="cur">
+        <textarea cols="30" rows="10" v-model="info"></textarea><span>{{info.length}}/140</span>
+        <p>
+            <button :disabled='info.length==0 || info.length>=140'>发布</button>
+            <button @click="clear">清除</button>
+        </p>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                info:''
+            },
+            methods: { // 清除文本框内容
+                clear() {
+                    this.info='';
+                }
+            }
+        })
+    </script>
+</body>
+</html>
