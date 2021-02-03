@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>声明周期函数 {{msg}}</h1>
+        <button @click="add()">单机我加1</button>
+        <p v-text="msg">
+    </div>
+
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        // 挂载点
+        el: "#app",
+        // 数据
+        data: {
+            msg: 1
+        },
+        // 事件处理函数
+        methods: {
+            add(){
+                this.msg++
+
+            }         },
+        // 监听属性的地方
+        watch:{},
+        //生命周期函数
+        beforeCreate() {
+        // 在创建实例之前执行一次，这里访问不到实例data数据
+            console.log("在创建vm之前执行一次")
+        },
+        // 在实例创建完毕之后，立即执行一次
+        created() {
+            console.log("创建vm之后立即执行一次" + this.msg)
+        },
+        // 实例已经创建，在实例和模板关联进行关联之前执行一次
+        beforeMount() {
+            console.log("我是vm，将和模板关联");
+        },
+        // 常用，实例被挂在后调用
+        mounted() {
+            // 在实际工作当中经常从这个函数拉取服务器数据
+            console.log("我是vm，我已经和模板进行关联了");
+        },
+        beforeUpdate() {
+            console.log("当数据发生变化的立即执行一次")
+        },
+        updated() {
+            console.log("数据更改导致dom重新渲染之后执行")
+        }
+    })
+</script>
