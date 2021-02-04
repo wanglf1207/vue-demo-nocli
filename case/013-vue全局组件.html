@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <go></go>
+    </div>
+    <template id="sina">
+        <div>
+            <a href="http://www.sina.com">sina</a>
+        </div>
+    </template>
+</body>
+</html>
+<script>
+    // 全局组件可以在任何地方用
+    // 需要通过Vue构造函数的component属性进行创建
+    Vue.component('go',{
+        template: "#sina"
+
+    })
+
+    // 不写下面的内容全局组件显示不出来！！！！
+    var vm = new Vue({
+        el: "#app"
+    })
+</script>

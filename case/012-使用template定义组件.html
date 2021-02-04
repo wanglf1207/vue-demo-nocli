@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <sss></sss>
+        <sss></sss>
+        <sss></sss>
+
+        <gen></gen>
+    </div>
+    <template id="erha">
+        <p @click="add">{{msg}}</p>
+    </template>
+
+    <template id="gen">
+        <ul>
+            <li>吃饭</li>
+            <li>喝酒</li>
+            <li>烫头</li>
+        </ul>
+    </template>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: 2
+        },
+        methods: {},
+        components: {
+            // 这里发生了一个非常奇葩的现象，我开始用componentA做名称，
+            // 死活显示不出来，换成sss就好了，用的时候component-a
+            // 组件的名字不能是已有标签的名字
+            // 局部组件只能在根组件里面用
+            // 局部组件不能嵌套使用
+            sss: {
+                template: "#erha",
+                 // 可以用自己的data，组件的数据必须有返回值
+                data() {
+                    // 每个子组件都是独立的
+                    return {
+                        msg: 1
+                    }              
+                },
+                methods: {
+                    add() {
+                        this.msg++;
+                    }
+                }
+            },
+            gen: {
+                template: "#gen"
+            }
+           
+        }
+    })
+</script>

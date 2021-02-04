@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 用标签的形式使用组件 -->
+        <one></one>
+        <one></one>
+        <one></one>
+    </div>
+</body>
+</html>
+<script>
+    // div 是最大的根组件
+    var vm = new Vue({
+        el: "#app",
+        // 根组件的数据
+        data: {},
+        methods: {},
+        watch:{},
+        // 局部组件需要注册
+        components: {
+            // 注册局部组件 one是名称
+            one: {
+                template:"<ul><li>吃饭</li></ul>"
+            }
+        }
+    });
+    // vue当中组件分为两种：1、局部不见、全局组件
+</script>
