@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="../js/vue.min.js"></script>
+<script src="../js/axios.js"></script>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <button @click="fetchData">点我发起get</button>
+        <button @click="postData">点我发起post</button>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg:"默认文本"
+        },
+        methods: {
+            fetchData() {
+                //alert(123);
+                // 发起get请求，拉取服务器新闻数据
+                // 注意箭头函数
+                axios.get("./data.txt").then((obj) => {
+                    this.msg = obj.data;
+                })
+            },
+            postData() {
+                // 发起post请求，拉取服务器数据
+                axios.post("./data.txt").then((obj) => {
+                    this.msg = obj.data;
+                })
+            }
+        }
+    })
+</script>
