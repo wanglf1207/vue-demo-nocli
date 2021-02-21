@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+    <style>
+        /* 清除原始样式 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            width: 80%;
+            height: 400px;
+            background-color: skyblue;
+            margin: 10px auto;
+        }
+        .cur {
+            width: 400px;
+            height: 200px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>我是父组件---{{liwu}}</h1>
+        <wsc class="cur" @gift="show($event)">sdsdf</wsc>
+    </div>
+    <template id="wsc">
+        <div>
+            <h1>我是子组件</h1>
+            <button @click="send">单机我给父组件传值</button>
+        </div>
+    </template>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            liwu: ""
+        },
+        methods: {
+            show(liwu) {
+               console.log(liwu);
+               this.liwu=liwu;
+            }
+        },
+        components: {
+            // 子组件
+            wsc: {
+                template: "#wsc",
+                // 组件的data必须是一个函数，函数务必需要有返回值
+                data() {
+                    return {
+                        msg: "子组件数据"
+                    }
+                },
+                methods: {
+                    // 给父组件传递数据的方法
+                    send () {
+                        // 触发自定义事件，通过组件的$emit方法
+                        this.$emit("gift",this.msg)
+                        
+                    }
+                }
+            }
+        }
+    })
+</script>

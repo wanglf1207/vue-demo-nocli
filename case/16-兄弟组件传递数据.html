@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+    <style>
+        #app {
+            width: 80%;
+            height: 300px;
+            background-color: red;
+            border: 2px solid black;
+            margin: 0 auto;
+        }
+        .son {
+            width: 300px;
+            height: 100;
+            background-color: pink;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <son class="son"></son>
+        <son1 class="son"></son1>
+    </div>
+    <template id="son">
+        <div>
+            <h1>大儿子组件-- {{info}}</h1>
+        </div>
+    </template>
+    <template id="son1">
+        <div>
+            <h1>小儿子组件-- {{car}}</h1>
+            <button @click="sendCar">单机我给哥哥送礼物</button>
+        </div>
+    </template>
+</body>
+</html>
+<script>
+    // 利用中央管道传值
+    Vue.prototype.$bus= new Vue;
+    var vm = new Vue({
+        el: "#app",
+        data: {},
+        components: {
+            son: {
+                template: "#son",
+                data() {
+                    return {
+                        info: ''
+                    }
+                },
+                mounted() {
+                    // 哥哥组件接收兄弟数据
+                    this.$bus.$on("sendCar",($event)=> {
+                        console.log($event);
+                        this.info = $event;
+                    })
+                }
+            },
+            son1: {
+                template: "#son1",
+                data() {
+                    return {
+                        car: "奔驰"
+                    }
+                },
+                methods: {
+                    sendCar() {
+                        this.$bus.$emit("sendCar",this.car)
+                    }
+                }
+            }
+        }
+    })
+</script>
